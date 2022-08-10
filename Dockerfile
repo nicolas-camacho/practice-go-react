@@ -10,7 +10,8 @@ FROM golang:1.19-alpine3.15 as build-go
 ENV GOPATH ""
 RUN go env -w GOPROXY=direct
 
-ADD go.mod go.sum ./
+COPY go.mod .
+COPY go.sum .
 RUN go mod download
 ADD . .
 COPY --from=build-node /app/dist ./client/dist
