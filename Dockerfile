@@ -8,7 +8,6 @@ RUN npm run build
 FROM golang:1.19-alpine3.15 as build-go
 
 ENV GOPATH ""
-RUN go env -w GOPROXY=direct
 
 COPY go.mod .
 COPY go.sum .
