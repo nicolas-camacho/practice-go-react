@@ -7,6 +7,9 @@ RUN npm build
 
 FROM golang:1.19-alpine3.15 as build-go
 
+ENV GOPATH ""
+RUN go env -w GOPROXY=direct
+
 ADD go.mod go.sum ./
 RUN go mod download
 ADD . .
