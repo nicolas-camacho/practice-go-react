@@ -1,11 +1,11 @@
-FROM node:18-alpine3.15
+FROM node:18-alpine3.15 as build-node
 
 WORKDIR /app
 COPY client/ .
 RUN npm install
 RUN npm build
 
-FROM golang:1.19-alpine3.15
+FROM golang:1.19-alpine3.15 as build-go
 
 ADD go.mod go.sum ./
 RUN go mod download
